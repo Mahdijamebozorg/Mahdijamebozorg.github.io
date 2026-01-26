@@ -1,13 +1,14 @@
 {
-    "name": "flutter_portfolio",
-    "short_name": "flutter_portfolio",
-    "start_url": ".",
+    "id": "/",
+    "name": "Mahdi Jamebozorg | Senior Flutter Engineer",
+    "short_name": "Mahdi J.",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Mahdi Jamebozorg - Expert Flutter and Mobile developer portfolio featuring high-performance apps and AI integration.",
     "orientation": "portrait-primary",
-    "prefer_related_applications": false,
+    "categories": ["productivity", "developer tools", "education"],
     "icons": [
         {
             "src": "icons/Icon-192.png",
