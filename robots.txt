@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /assets/
+
+# Disallow crawling of internal Flutter engine files to save crawl budget
+Disallow: /main.dart.js
+Disallow: /flutter.js
+Disallow: /flutter_bootstrap.js
+
+# Point Google to your sitemap (See step 2)
+Sitemap: https://mahdijamebozorg.github.io/sitemap.xml
