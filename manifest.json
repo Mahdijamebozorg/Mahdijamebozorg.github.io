@@ -1,14 +1,13 @@
 {
-    "id": "/",
-    "name": "Mahdi Jamebozorg | Senior Flutter Engineer",
-    "short_name": "Mahdi J.",
-    "start_url": "/",
+    "name": "Mahdi Jamebozorg | Mobile Engineer",
+    "short_name": "Mahdi.Dev",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Mahdi Jamebozorg - Expert Flutter and Mobile developer portfolio featuring high-performance apps and AI integration.",
+    "description": "Portfolio of Senior Mobile Engineer Mahdi Jamebozorg. Expert in Flutter, Android, iOS, and AI-powered mobile solutions.",
     "orientation": "portrait-primary",
-    "categories": ["productivity", "developer tools", "education"],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "icons/Icon-192.png",
