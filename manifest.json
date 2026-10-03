@@ -1,12 +1,12 @@
 {
-    "name": "Mahdi Jamebozorg | Mobile Engineer",
-    "short_name": "Mahdi.Dev",
+    "name": "Mahdi Jamebozorg · AI Platform Engineer",
+    "short_name": "Mahdi J.",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Portfolio of Senior Mobile Engineer Mahdi Jamebozorg. Expert in Flutter, Android, iOS, and AI-powered mobile solutions.",
-    "orientation": "portrait-primary",
+    "background_color": "#0B0D10",
+    "theme_color": "#0B0D10",
+    "description": "Portfolio of Mahdi Jamebozorg, AI Platform Engineer: agentic workflows, MCP, DevOps and CI/CD, with a background in Flutter, Android and iOS.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {

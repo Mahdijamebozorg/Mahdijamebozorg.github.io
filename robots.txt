@@ -1,30 +1,6 @@
+# Allow everything, including the Flutter engine files: search engines need
+# them to render the app.
 User-agent: *
 Allow: /
-Allow: /index.html
-Allow: /assets/
-Allow: /icons/
 
-# Disallow crawling of internal Flutter engine files to save crawl budget
-Disallow: /main.dart.js
-Disallow: /flutter.js
-Disallow: /flutter_bootstrap.js
-Disallow: /flutter_service_worker.js
-Disallow: /canvaskit/
-Disallow: /packages/
-
-# Disallow build/cache/private directories
-Disallow: /build/
-Disallow: /.git/
-
-# Set crawl delay (in seconds) to reduce server load
-Crawl-delay: 1
-
-# Point Google to your sitemap
 Sitemap: https://mahdijamebozorg.github.io/sitemap.xml
-
-# Additional bot directives
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
