@@ -10,7 +10,7 @@
   <meta name="description"
     content="AI Platform Engineer in Istanbul building agentic workflows, MCP knowledge platforms and AI code review in CI/CD. Background in Flutter, Android and iOS engineering.">
   <meta name="keywords"
-    content="Mahdi Jamebozorg, AI Platform Engineer, Agentic Workflows, AI Agents, Model Context Protocol, MCP, LLM Integration, Claude Code, Codex, Knowledge Graphs, AI Code Review, DevOps, CI/CD, Azure DevOps, Docker, Prometheus, Grafana, Loki, .NET, Flutter, Android, iOS, Kotlin, Swift, TensorFlow Lite, PyTorch, Computer Vision, Istanbul">
+    content="Mahdi Jamebozorg, AI Platform Engineer, Agentic Workflows, AI Agents, Model Context Protocol, MCP, LLM Integration, Claude Code, Codex, Knowledge Graphs, AI Code Review, LLM Gateway, FastMCP, Python, DevOps, CI/CD, Azure DevOps, Docker, Prometheus, Grafana, Loki, .NET, Roslyn, Flutter, Android, iOS, Kotlin, Swift, TensorFlow Lite, PyTorch, Computer Vision, Istanbul">
   <meta name="author" content="Mahdi Jamebozorg">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://mahdijamebozorg.github.io/">
@@ -64,8 +64,7 @@
   "email": "mailto:mahdijamebozorg2000@gmail.com",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Istanbul",
-    "addressCountry": "Türkiye"
+    "addressLocality": "Istanbul"
   },
   "worksFor": {
     "@type": "Organization",
@@ -83,20 +82,38 @@
   "knowsAbout": [
     "AI Agents",
     "Model Context Protocol (MCP)",
+    "FastMCP",
     "LLM Integration",
+    "LLM Gateways",
+    "RAG",
+    "Tool Calling",
+    "LangChain",
+    "AI Code Review",
     "Claude Code",
     "Codex",
     "Knowledge Graphs",
     "Prompt Engineering",
+    "Model Fine-Tuning",
     "Azure DevOps",
+    "YAML Pipelines",
     "CI/CD",
+    "Python",
     "Docker",
     "Prometheus",
     "Grafana",
     "Loki",
     "SQL Server",
-    "IIS",
+    "IIS/iisnode",
+    "NSSM Windows services",
     ".NET",
+    "Roslyn",
+    "OpenAPI/Swagger",
+    "Next.js",
+    "FastAPI",
+    "PostgreSQL",
+    "Neo4j & Graph Databases",
+    "n8n",
+    "Linux",
     "Flutter & Dart",
     "Android (Kotlin)",
     "iOS (Swift)",
@@ -108,7 +125,10 @@
     "TensorFlow",
     "PyTorch",
     "TensorFlow Lite",
-    "Computer Vision"
+    "OpenCV",
+    "Computer Vision",
+    "Reinforcement Learning",
+    "Pandas & NumPy"
   ]
 }
   </script>
@@ -192,49 +212,65 @@
       <h1>Mahdi Jamebozorg</h1>
       <p>AI Platform Engineer · Agentic Workflows, MCP · DevOps, CI/CD · Flutter, Android, iOS</p>
       <p>AI took the part of my job I liked least: hours of writing and debugging code. What’s left is the part I’m actually good at: innovation.</p>
-      <p>Istanbul, Türkiye · Open to on-site, hybrid and remote roles</p>
+      <p>Istanbul · Open to on-site, hybrid and remote roles</p>
       <p><a href="https://drive.google.com/file/d/1RcVOx8bAGWNNkFP93HgLHJdB7RG-UFa8/view?usp=sharing">Download CV</a> · <a href="https://www.linkedin.com/in/mahdi-jamebozorg-b234b5221">LinkedIn</a> · <a href="https://github.com/mahdijamebozorg">GitHub</a> · <a href="mailto:mahdijamebozorg2000@gmail.com">mahdijamebozorg2000@gmail.com</a></p>
     </header>
     <section>
       <h2>Featured AI Platform Work</h2>
-      <article><h3>Multi-AI Backend Rewrite</h3><p>A legacy .NET backend rewritten through a GPT → Claude → Codex → Claude workflow, with phased plans, exit gates and zero API contract changes.</p><p>Private · Bargheto</p></article>
-      <article><h3>Shared AI Knowledge Platform</h3><p>CI-generated knowledge graphs of three codebases, served through a central MCP server to Claude Code and Codex users; a 594-endpoint API contract split into agent-readable files.</p><p>Private · Bargheto</p></article>
-      <article><h3>Dual-Audience AI Code Review</h3><p>Claude Code running headless in Azure DevOps CI, producing technical reviews for developers and product summaries for leadership.</p><p>Private · Bargheto</p></article>
-      <article><h3>Agentless Deployment with Auto-Rollback</h3><p>A shared pipeline template deploying over SSH into release folders, with health checks and automatic rollback.</p><p>Private · Bargheto</p></article>
+      <article><h3>CI/CD for All Product Repositories</h3><p>One Azure DevOps YAML pipeline per repository for the .NET backend, the Next.js web app (IIS/iisnode), the Flutter PWA and a Thrift service. The branch decides the environment: dev, test or production.</p><ul><li>Shared build, deploy and review logic lives in one central templates repository; product repositories keep only a short entry file, so a change is made once and reaches every pipeline.</li><li>Each run is one stage: detect changes (CI-only changes skip the build), build, deploy, AI review. When a dev run finishes, the dev environment is already updated.</li><li>Two deployment paths: IIS on the internal server for dev; packaged transfer over SSH (tar.gz + scp) to external hosting for test and production, with automatic rollback for backend and mobile web production deployments.</li><li>Secrets live only in variable groups and secret pipeline variables, never in YAML. Pipeline completion triggers the knowledge pipeline.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>Shared Knowledge Platform for Coding Agents</h3><p>A FastMCP server that the Claude Code and Codex agents of all three teams connect to. Users sign in with their Azure DevOps personal access tokens, every call is audited, and tools can be restricted to chosen users without a restart.</p><ul><li>Serves code graphs of the three repositories, the 594-endpoint backend API contract generated from Swagger and split into searchable sections, documentation, and read-only Grafana logs and metrics (Loki/Prometheus).</li><li>Exact backend facts from a custom Roslyn (C# compiler) exporter: endpoints, authorization policies, where each error code is produced, callers, interface implementations and the permission catalogue with where each permission is checked.</li><li>A separate pipeline rebuilds and publishes all generated knowledge after every dev build and nightly, deciding per repository what to rebuild, with skip switches per step.</li><li>A Git/Markdown knowledge base organised with Diátaxis (also an Obsidian vault). ADRs act as machine-readable team contracts: agents query the decisions that apply to the files or endpoint they change, must not contradict them silently, and report missing information as a “knowledge gap”.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>AI Code Review &amp; Release Reporting in CI/CD</h3><p>Every pipeline run ends with an AI step that sends the diff to one central review service. Each audience gets its own report: a full technical review for developers on dev, a review for the test branch, a product-level report for managers (sent only when there is something to report) and a release report for production.</p><ul><li>Reviews check the change against the API contract, the team decisions and the linked task. A behaviour change without a matching Swagger update counts as a critical finding.</li><li>Critical findings are tracked until a later review confirms them fixed; coding agents see the open findings on a file before they edit it.</li><li>Reports are delivered to Bale, Telegram and Slack and kept as pipeline artifacts.</li><li>Prompts live only in the central service; pipelines name a prompt and never copy it. If the service fails, the pipeline posts “no report” and does not fail.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>Central AI Agent &amp; Ops Bot</h3><p>One assistant on the Bale messenger that routes requests to skills. Access per user is defined in a policy file (skills, boards, quota and model); users can be served by the Claude CLI or by the LLM gateway, with the model chosen by name.</p><ul><li>Task analysis before development: classifies a task as ready, needs clarification, needs decision, needs investigation, blocked, needs split or close; cross-checks it against the API contract and the code, groups open questions by who must answer them, and keeps a history of analyses.</li><li>Drafts ADRs and opens them as pull requests through a least-privilege bot account that can only create branches and pull requests; humans review and merge.</li><li>A weekly management report (task health, sprint flow, stuck work, incoming requests, analyses) and platform monitoring.</li><li>The administrator manages users in natural language; the bot only proposes a change and applies it after explicit confirmation, with a re-check, a backup and a change log.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>Read-only Business Data Gateway</h3><p>A second MCP server that gives AI tools access to support tickets and project tasks, reading production SQL only through dedicated read-only views.</p><ul><li>Personal data is masked before it reaches any external model: phone numbers, national IDs, card numbers, e-mails, addresses and names.</li><li>Each consumer has its own token, a tool and board scope, and rate limits.</li><li>Task data is synced into a local cache with incremental updates; tools cover search, statistics, request queues and task-flow analytics: time in each status, waits, blocks and rework.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>LLM Gateway</h3><p>The single entry point to external language-model providers, with model aliases, a token per consumer, daily budgets and an audit log.</p><p>Private · Bargheto</p></article>
+      <article><h3>Customer-Support Reply Assistant</h3><p>Suggests canned replies to incoming customer messages and posts them to a staff group. Evaluated against a random test set and against the replies staff actually sent.</p><ul><li>An optional, rule-bound sender delivers approved canned replies. It is off by default.</li></ul><p>Private · Bargheto</p></article>
+      <article><h3>Security &amp; Infrastructure Hardening</h3><p>Hardening of the self-hosted platform: planned the remediation for production SQL Server access (enforced encryption and firewall scoping), locked down service secrets in the Windows registry with ACLs, and managed TLS for internal services behind a CDN.</p><p>Private · Bargheto</p></article>
+      <h3>How I build</h3>
+      <ul>
+        <li>Read-only by default: every write path is a narrow, documented exception that needs a human confirmation step.</li>
+        <li>Least privilege and per-consumer tokens; secrets are never stored in the repository.</li>
+        <li>Personal data never leaves company servers unmasked.</li>
+        <li>One source for shared logic: CI templates and review prompts live in one place.</li>
+        <li>Generated knowledge lives on the server, not in Git.</li>
+        <li>Configuration-driven, self-contained modules: the platform is designed to become one reusable product.</li>
+      </ul>
     </section>
     <section>
       <h2>Experience</h2>
-      <article><h3>AI Platform Engineer · Bargheto</h3><p>Aug 2026 – Present</p><p>Leading AI-driven engineering and platform infrastructure across backend, frontend and mobile teams. Multi-AI backend rewrite, MCP knowledge platform, AI code review in CI/CD, Azure DevOps Server migration, agentless SSH deployments with rollback, and the observability stack (Prometheus, Grafana, Loki, Alloy).</p></article>
+      <article><h3>AI Platform Engineer · Bargheto</h3><p>Aug 2026 – Present</p><p>Designed, built and operate the company’s CI/CD and its self-hosted internal AI engineering platform (Python, Windows services) across the backend (.NET), web (Next.js) and mobile (Flutter) teams, mostly alone. Unified Azure DevOps pipelines with automatic rollback, an MCP knowledge platform for Claude Code and Codex agents, AI code review and release reporting in CI/CD, read-only data and LLM gateways, a central ops bot, the Azure DevOps Server migration and the observability stack (Prometheus, Grafana, Loki, Alloy).</p></article>
       <article><h3>Head Mobile Engineer · Bargheto</h3><p>Nov 2024 – Mar 2026 · Tehran</p><p>Led mobile engineering for Bargheto’s Flutter apps (Android, iOS and PWA), used by 50,000+ users. Architected the platform from scratch with Clean Architecture and native integrations (Kotlin, Swift), and built the mobile CI/CD pipeline.</p></article>
       <article><h3>Freelance Flutter &amp; AI Application Engineer · Freelancer.com</h3><p>Jul 2020 – Present</p><p>Cross-platform apps for clients, with ML, computer vision and LLM features (TensorFlow Lite, PyTorch Mobile), CI/CD and store deployment.</p></article>
       <article><h3>AI-Integrated Mobile Application Developer · Tad Group</h3><p>Jun 2024 – Sep 2024</p><p>Quantized and optimized deep learning models for mobile GPUs; on-device ML with TensorFlow Lite and PyTorch Mobile.</p></article>
-      <article><h3>Research Assistant · Robot Intelligence &amp; Vision Lab</h3><p>Sep 2023 – Sep 2024</p><p>Computer vision and deep learning research (object detection, semantic segmentation), reinforcement learning for robotics.</p></article>
+      <article><h3>Research Assistant · Robot Intelligence &amp; Vision Lab</h3><p>Sep 2023 – Sep 2024</p><p>Computer vision and deep learning research (object detection, semantic segmentation), reinforcement learning for robotics. Supported academic publications and experimental evaluations.</p></article>
       <article><h3>Teaching Assistant · Bu-Ali Sina University</h3><p>2021 – 2024</p><p>AI &amp; Expert Systems, Advanced Programming (C++/Qt), Computer Architecture, Fundamentals of Programming.</p></article>
       <h3>Education</h3>
       <p>B.Sc. Computer Engineering, Bu-Ali Sina University, 2020 – 2024</p>
+      <p>Coursework: Deep Learning, Machine Learning, Information Retrieval, Data Mining</p>
       <h3>Publications</h3>
       <ul>
-        <li><a href="https://scholar.google.com/scholar?oi=bibs&amp;cluster=10865017636750311729&amp;btnI=1&amp;hl=en">Traffic control using intelligent timing of traffic lights with reinforcement learning and real-time processing of surveillance camera images</a> (6th International Conference on Traffic Management and Safety, 2024)</li>
-        <li><a href="https://scholar.google.com/scholar?oi=bibs&amp;cluster=16086668151779103137&amp;btnI=1&amp;hl=en">Assessing the Impact of CNN Autoencoder-Based Image Denoising on Image Classification Tasks</a> (13th International Conference on Innovative Technologies, Thessaloniki, 2024)</li>
+        <li><a href="https://scholar.google.com/scholar?oi=bibs&amp;cluster=10865017636750311729&amp;btnI=1&amp;hl=en">Traffic control using intelligent timing of traffic lights with reinforcement learning and real-time processing of surveillance camera images</a> (6th International Conference on Traffic Management and Safety, 2024). A traffic-optimisation framework combining Rainbow DQN, computer vision, object tracking and speed estimation to time traffic lights from surveillance-camera footage.</li>
+        <li><a href="https://scholar.google.com/scholar?oi=bibs&amp;cluster=16086668151779103137&amp;btnI=1&amp;hl=en">Assessing the Impact of CNN Autoencoder-Based Image Denoising on Image Classification Tasks</a> (13th International Conference on Innovative Technologies, Thessaloniki, 2024). Convolutional autoencoders trained to remove Gaussian, periodic and salt-and-pepper noise while preserving image-classification accuracy.</li>
       </ul>
     </section>
     <section>
       <h2>Projects</h2>
-      <article><h3>Bargheto</h3><p>Production-scale electricity retail platform built with Flutter for Android, iOS and PWA, used by 50,000+ users, focused on scalable architecture and automated delivery workflows.</p><p>Live · Flutter, Android, iOS, PWA, Kotlin, Swift, Clean Architecture, CI/CD</p><p><a href="https://app.bargheto.com">Live app</a> · <a href="https://github.com/Mahdijamebozorg/Bargheto">Overview</a></p></article>
-      <article><h3>IDA</h3><p>AI-assisted interior design visualization platform using intelligent image transformation workflows.</p><p>Private · AI, Image transformation</p><p><a href="https://github.com/Mahdijamebozorg/IDA">Overview</a></p></article>
-      <article><h3>Panah Coin</h3><p>Real-time gold trading platform with live market synchronization and scalable data-processing workflows.</p><p>Live · Real-time, Market data sync</p><p><a href="https://mahdijamebozorg.github.io/panah-coin">Live app</a> · <a href="https://github.com/Mahdijamebozorg/PanahCoin">Overview</a></p></article>
-      <article><h3>Crop Disease Detection</h3><p>Mobile computer vision system using TensorFlow Lite for offline real-time plant disease detection.</p><p>Private · Flutter, TensorFlow Lite, Computer Vision, Offline</p><p><a href="https://github.com/Mahdijamebozorg/flutter_crop_diseases">Overview</a></p></article>
-      <article><h3>Okradish</h3><p>IoT nutrition tracking system integrating BLE-enabled hardware and real-time monitoring workflows.</p><p>Live · IoT, BLE, Real-time monitoring</p><p><a href="https://mahdijamebozorg.github.io/okradish">Live app</a> · <a href="https://github.com/Mahdijamebozorg/okradish">Overview</a></p></article>
-      <article><h3>Watch Shop</h3><p>Cross-platform e-commerce application with cloud backend integration using Back4App.</p><p>Private · Cross-platform, Back4App, E-commerce</p><p><a href="https://github.com/amirhosseinMirzaei/watch_shop">Overview</a></p></article>
+      <article><h3>Bargheto</h3><p>Production-scale electricity retail platform built with Flutter for Android, iOS and PWA, used by 50,000+ users, focused on scalable architecture and automated delivery workflows.</p><p>Live · Flutter, Android, iOS, PWA, GetX, Kotlin, Swift, Clean Architecture, Azure DevOps, Firebase FCM, Microsoft Clarity, ASP.NET</p><p><a href="https://app.bargheto.com">Live app</a> · <a href="https://github.com/Mahdijamebozorg/Bargheto">Overview</a></p></article>
+      <article><h3>IDA</h3><p>AI-assisted interior design visualization platform using intelligent image transformation workflows.</p><p>Private · Flutter, Riverpod, Swift, RevenueCat, Django, GitHub Actions, AI image transformation</p><p><a href="https://github.com/Mahdijamebozorg/IDA">Overview</a></p></article>
+      <article><h3>Panah Coin</h3><p>Real-time gold trading platform with live market synchronization and scalable data-processing workflows.</p><p>Live · Flutter, Bloc, Node.js, Web crawling, GitHub Actions, Real-time</p><p><a href="https://mahdijamebozorg.github.io/panah-coin">Live app</a> · <a href="https://github.com/Mahdijamebozorg/PanahCoin">Overview</a></p></article>
+      <article><h3>Crop Disease Detection</h3><p>Mobile computer vision system using TensorFlow Lite for offline real-time plant disease detection.</p><p>Private · Flutter, Python, TensorFlow, TensorFlow Lite, OpenCV, Computer Vision, Offline</p><p><a href="https://github.com/Mahdijamebozorg/flutter_crop_diseases">Overview</a></p></article>
+      <article><h3>3D MRI Multiple Sclerosis Detection</h3><p>Deep learning models for disease detection from volumetric MRI images using 3D medical image processing techniques.</p><p>Private · Python, PyTorch, 3D CNNs, Medical imaging</p></article>
+      <article><h3>Smart Crypto Intelligence Platform</h3><p>AI-assisted cryptocurrency analysis pipeline combining web scraping, financial indicators, news analysis, LLM-based sentiment analysis and automated reporting.</p><p>Private · Python, Web scraping, LLMs, Pandas, Automated reporting</p></article>
+      <article><h3>Okradish</h3><p>IoT nutrition tracking system integrating BLE-enabled hardware and real-time monitoring workflows.</p><p>Live · Flutter, GetX, Kotlin, BLE, ESP32, Back4App, GitHub Actions, IoT</p><p><a href="https://mahdijamebozorg.github.io/okradish">Live app</a> · <a href="https://github.com/Mahdijamebozorg/okradish">Overview</a></p></article>
+      <article><h3>Watch Shop</h3><p>Cross-platform e-commerce application with cloud backend integration using Back4App.</p><p>Private · Flutter, Bloc, Back4App, Firebase, GitHub Actions</p><p><a href="https://github.com/amirhosseinMirzaei/watch_shop">Overview</a></p></article>
       <article><h3>Pishband</h3><p>Food-focused social platform with real-time user interaction and content-sharing workflows.</p><p>Private · Real-time, Social</p><p><a href="https://github.com/Mahdijamebozorg/FoodStation">Overview</a></p></article>
       <article><h3>Advanced Chess</h3><p>Multi-threaded chess engine and desktop GUI application built with C++ and Qt.</p><p>Private · C++, Qt, Multithreading</p><p><a href="https://github.com/Mahdijamebozorg/Advanced_Chess">Overview</a></p></article>
     </section>
     <section>
       <h2>Skills</h2>
-      <h3>AI Engineering</h3><p>AI Agents, Model Context Protocol (MCP), LLM Integration, Claude Code, Codex, Knowledge Graphs, Prompt Engineering</p>
-      <h3>Platform &amp; DevOps</h3><p>Azure DevOps, CI/CD, Docker, Prometheus, Grafana, Loki, SQL Server, IIS, .NET</p>
+      <h3>AI Engineering</h3><p>AI Agents, Model Context Protocol (MCP), FastMCP, LLM Integration, LLM Gateways, RAG, Tool Calling, LangChain, AI Code Review, Claude Code, Codex, Knowledge Graphs, Prompt Engineering, Model Fine-Tuning</p>
+      <h3>Platform &amp; DevOps</h3><p>Azure DevOps, YAML Pipelines, CI/CD, Python, Docker, Prometheus, Grafana, Loki, SQL Server, IIS/iisnode, NSSM Windows services, .NET, Roslyn, OpenAPI/Swagger, Next.js, FastAPI, PostgreSQL, Neo4j &amp; Graph Databases, n8n, Linux</p>
       <h3>Mobile &amp; Cross-platform</h3><p>Flutter &amp; Dart, Android (Kotlin), iOS (Swift), PWA, GetX, Bloc, Riverpod, Clean Architecture</p>
-      <h3>Machine Learning</h3><p>TensorFlow, PyTorch, TensorFlow Lite, Computer Vision</p>
+      <h3>Machine Learning</h3><p>TensorFlow, PyTorch, TensorFlow Lite, OpenCV, Computer Vision, Reinforcement Learning, Pandas &amp; NumPy</p>
     </section>
     <section>
       <h2>Writing</h2>
